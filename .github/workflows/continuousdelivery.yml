@@ -1,0 +1,21 @@
+name: Continuous Delivery 
+on: 
+  pull_request:
+    branches:
+      - main
+
+    
+jobs:
+  delivery:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository code
+        users: action/checkout@v4
+
+      - name: Simulando CD
+        uses: actions/upload-artifact@v4
+        with:
+          name: ProjetoZipado.zip
+          path: |
+            '**.py'
+            README.md

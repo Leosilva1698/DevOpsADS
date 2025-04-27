@@ -4,47 +4,53 @@ from src.main import (
     root, funcaoteste, create_estudante,
     update_estudante, delete_estudante, Estudante
 )
+import pytest
 
 
-def test_root():
-    result = root()
-    yield result
+@pytest.mark.asyncio
+async def test_root():
+    result = await root()
     assert result == {"message": "Hello Word"}
 
 
-def test_funcaoteste():
+@pytest.mark.asyncio
+async def test_funcaoteste():
     with patch('random.randint', return_value=12345):
-        result = funcaoteste()
-        yield result
+        result = await funcaoteste()
     assert result == 12345
 
 
-def test_create_estudante():
+@pytest.mark.asyncio
+async def test_create_estudante():
     estudante_teste = Estudante(name="Leonardo", curso="ADS", ativo=True)
-    result = create_estudante(estudante_teste)
-    yield result
+    result = await create_estudante(estudante_teste)
+
     return estudante_teste == result
 
 
-def test_update_estudante_negativo():
-    result = update_estudante(-5)
-    yield result
+@pytest.mark.asyncio
+async def test_update_estudante_negativo():
+    result = await update_estudante(-5)
+
     assert not result
 
 
-def test_update_estudante_postivo():
-    result = update_estudante(10)
-    yield result
+@pytest.mark.asyncio
+async def test_update_estudante_postivo():
+    result = await update_estudante(10)
+
     assert result
 
 
-def test_delete_estudante_negativo():
-    result = delete_estudante(-5)
-    yield result
+@pytest.mark.asyncio
+async def test_delete_estudante_negativo():
+    result = await delete_estudante(-5)
+
     assert not result
 
 
-def test_delete_estudante_positivo():
-    result = delete_estudante(5)
-    yield result
+@pytest.mark.asyncio
+async def test_delete_estudante_positivo():
+    result = await delete_estudante(5)
+
     assert result

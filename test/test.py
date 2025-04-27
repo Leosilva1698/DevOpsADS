@@ -19,7 +19,7 @@ def test_funcaoteste():
 
 def test_create_estudante():
     estudante_teste = Estudante(name="Leonardo", curso="ADS", ativo=True)
-    return estudante_teste == create_estudante()
+    return estudante_teste == create_estudante(estudante_teste)
 
 
 def test_update_estudante_negativo():

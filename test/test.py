@@ -7,32 +7,44 @@ from src.main import (
 
 
 def test_root():
-    assert root() == {"message": "Hello Word"}
+    result = root()
+    yield result
+    assert result == {"message": "Hello Word"}
 
 
 def test_funcaoteste():
     with patch('random.randint', return_value=12345):
         result = funcaoteste()
-
+        yield result
     assert result == 12345
 
 
 def test_create_estudante():
     estudante_teste = Estudante(name="Leonardo", curso="ADS", ativo=True)
-    return estudante_teste == create_estudante(estudante_teste)
+    result = create_estudante(estudante_teste)
+    yield result
+    return estudante_teste == result
 
 
 def test_update_estudante_negativo():
-    assert not update_estudante(-5)
+    result = update_estudante(-5)
+    yield result
+    assert not result
 
 
 def test_update_estudante_postivo():
-    assert update_estudante(10)
+    result = update_estudante(10)
+    yield result
+    assert result
 
 
 def test_delete_estudante_negativo():
-    assert not delete_estudante(-5)
+    result = delete_estudante(-5)
+    yield result
+    assert not result
 
 
 def test_delete_estudante_positivo():
-    assert delete_estudante(5)
+    result = delete_estudante(5)
+    yield result
+    assert result
